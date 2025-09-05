@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,6 +8,20 @@ datasource db {
 }
 
 /**
-Category Schema/Entity
-*/
+ * Category Schema/Entity
+ */
+model Category {
+  id         String         @id @default(uuid())
+  name       String
+  slug       String         @unique
+  status     CategoryStatus @default(ACTIVE)
+  created_At DateTime       @default(now())
+  updated_At DateTime       @updatedAt
+}
 
+enum CategoryStatus {
+  ACTIVE
+  INACTIVE
+  UPCOMING
+  DISCONTINUED
+}
