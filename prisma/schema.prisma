@@ -12,11 +12,61 @@ datasource db {
  */
 model Category {
   id         String         @id @default(uuid())
-  name       String
+  name       String         @unique
   slug       String         @unique
   status     CategoryStatus @default(ACTIVE)
+  store_id   String
   created_At DateTime       @default(now())
   updated_At DateTime       @updatedAt
+
+  products          Product[]
+  ProductCategories ProductCategories[]
+
+  @@unique([store_id, name])
+  @@map("categories")
+}
+
+/**
+ * Product Schema/Entity
+ */
+model Product {
+  id               String             @id @default(uuid())
+  store_id         String
+  franchise_id     String
+  name             String
+  description      String?
+  pricing_type     ProductPricingType @default(FLAT)
+  price            Float
+  preparation_time Float
+  status           ProductStatus      @default(PUBLISHED)
+  slug             String             @unique
+  meta             Json
+  created_At       DateTime           @default(now())
+  updated_At       DateTime           @updatedAt
+
+  categories        Category[]
+  ProductCategories ProductCategories[]
+
+  @@map("products")
+}
+
+model ProductCategories {
+  product_id  String
+  category_id String
+  product     Product  @relation(fields: [product_id], references: [id], onDelete: Cascade)
+  category    Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@id([product_id, category_id])
+}
+
+enum ProductPricingType {
+  FLAT
+  VARIANT
+}
+
+enum ProductStatus {
+  PUBLISHED
+  UNPUBLISHED
 }
 
 enum CategoryStatus {
