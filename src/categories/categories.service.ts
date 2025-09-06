@@ -1,9 +1,7 @@
 import { FindAllCategoryProvider } from './providers/find-all-category.provider';
 import { UpdateCategoryDto } from './dtos/update-category.dto';
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CategoryStatus } from '@prisma/client';
-import { PaginationHelper } from 'src/common/pagination/helper/pagination.helper';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CategoryQueryDto } from './dtos/category-query.dto';
 import { CreateCategoryDto } from './dtos/create-category.dto';
@@ -13,7 +11,7 @@ export class CategoriesService {
   constructor(
       private readonly prisma: PrismaService,
       private readonly findAllCategoryProvider:FindAllCategoryProvider,
-    private readonly paginationHelper: PaginationHelper,
+    
   ) {}
 
   /**
