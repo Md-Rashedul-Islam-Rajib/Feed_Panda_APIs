@@ -20,7 +20,7 @@ export class ProductsController {
   @Get()
   @ApiOperation({ summary: 'Get all products with optional filters' })
   findAll(@Query() productQueryDto: ProductQueryDto) {
-    return this.productsService.findAllProducts(productQueryDto);
+    return this.productsService.findAll(productQueryDto);
   }
 
   @Get(':id')
