@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import {ApiPropertyOptional } from '@nestjs/swagger';
 import { CategoryStatus } from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
@@ -14,7 +14,7 @@ import {
 
 export class CategoryQueryDto {
   // PaginationDto properties
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 1,
     description: 'Page number for pagination',
@@ -25,7 +25,7 @@ export class CategoryQueryDto {
   @Min(1)
   page?: number = 1;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 10,
     description: 'Items per page for pagination',
@@ -37,7 +37,7 @@ export class CategoryQueryDto {
   @Max(50)
   limit?: number = 10;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 'created_At',
     description: 'Field for sorting',
@@ -45,7 +45,7 @@ export class CategoryQueryDto {
   @IsOptional()
   sortBy?: string = 'created_At';
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     enum: ['asc', 'desc'],
     default: 'desc',
@@ -57,7 +57,7 @@ export class CategoryQueryDto {
 
   // CategoryFilterDto properties
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     enum: ['ACTIVE', 'INACTIVE', 'UPCOMING', 'DISCONTINUED'],
     default: 'ACTIVE',
@@ -67,7 +67,7 @@ export class CategoryQueryDto {
   @IsEnum(CategoryStatus)
   status?: CategoryStatus;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     description: 'creation date of category',
   })
@@ -75,7 +75,7 @@ export class CategoryQueryDto {
   @IsDateString()
   created_At?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     description: 'update date of category',
   })
@@ -83,7 +83,7 @@ export class CategoryQueryDto {
   @IsDateString()
   updated_At?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     description: 'Name or slug of the category',
   examples: ['Pizza','store-1-burger']

@@ -1,9 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsIn, IsInt, IsOptional, Max, Min } from "class-validator";
 
 export class PaginationDto {
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 1,
     description: 'Page number for pagination',
@@ -14,7 +14,7 @@ export class PaginationDto {
   @Min(1)
   page?: number = 1;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 10,
     description: 'Items per page for pagination',
@@ -26,7 +26,7 @@ export class PaginationDto {
   @Max(50)
   limit?: number = 10;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     default: 'created_At',
     description: 'Field for sorting',
@@ -34,7 +34,7 @@ export class PaginationDto {
   @IsOptional()
   sortBy?: string = 'created_At';
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     enum: ['asc', 'desc'],
     default: 'desc',
@@ -44,7 +44,7 @@ export class PaginationDto {
   @IsIn(['asc', 'desc'])
   sortOrder?: 'asc' | 'desc' = 'desc';
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
     description: 'Search keyword for pagination',
   })

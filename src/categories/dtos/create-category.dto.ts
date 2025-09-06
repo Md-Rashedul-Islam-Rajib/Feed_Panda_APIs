@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { CategoryStatus } from "@prisma/client";
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
@@ -12,20 +12,27 @@ export class CreateCategoryDto {
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     required: false,
-    enum: ['ACTIVE','INACTIVE','UPCOMING','DISCONTINUED'],
-    default: 'ACTIVE',
+    enum: ['ACTIVE', 'INACTIVE', 'UPCOMING', 'DISCONTINUED'],
+    default: CategoryStatus.ACTIVE,
     description: 'Category status',
   })
   @IsOptional()
   @IsEnum(CategoryStatus)
-  status?: CategoryStatus;
+  status?: CategoryStatus = CategoryStatus.ACTIVE;
 
+  @ApiPropertyOptional({
+    description: 'Slug (auto-generated if it is absent)',
+    example: 'store_111-burger',
+  })
+  @IsString()
+  @IsOptional()
+  slug?: string;
 
   @ApiProperty({
     required: true,
-    description: 'Store id'
+    description: 'Store id',
   })
   @IsString()
   @IsNotEmpty()
