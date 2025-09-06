@@ -13,7 +13,7 @@ import {
 } from 'class-validator';
 
 export class CategoryQueryDto {
-  // PaginationDto properties
+  
   @ApiPropertyOptional({
     required: false,
     default: 1,
@@ -55,7 +55,7 @@ export class CategoryQueryDto {
   @IsIn(['asc', 'desc'])
   sortOrder?: 'asc' | 'desc' = 'desc';
 
-  // CategoryFilterDto properties
+  
 
   @ApiPropertyOptional({
     required: false,

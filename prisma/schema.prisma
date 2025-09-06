@@ -40,7 +40,7 @@ model Product {
   preparation_time Float
   status           ProductStatus      @default(PUBLISHED)
   slug             String             @unique
-  meta             Json
+  meta             Json?
   created_At       DateTime           @default(now())
   updated_At       DateTime           @updatedAt
 
