@@ -1,8 +1,8 @@
-import {ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { CategoryStatus } from '@prisma/client';
 import { Type } from 'class-transformer';
 import {
-  IsDateString,
+  IsDate,
   IsEnum,
   IsIn,
   IsInt,
@@ -13,7 +13,6 @@ import {
 } from 'class-validator';
 
 export class CategoryQueryDto {
-  
   @ApiPropertyOptional({
     required: false,
     default: 1,
@@ -55,8 +54,6 @@ export class CategoryQueryDto {
   @IsIn(['asc', 'desc'])
   sortOrder?: 'asc' | 'desc' = 'desc';
 
-  
-
   @ApiPropertyOptional({
     required: false,
     enum: ['ACTIVE', 'INACTIVE', 'UPCOMING', 'DISCONTINUED'],
@@ -72,7 +69,8 @@ export class CategoryQueryDto {
     description: 'creation date of category',
   })
   @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @Type(() => Date)
   created_At?: Date;
 
   @ApiPropertyOptional({
@@ -80,13 +78,14 @@ export class CategoryQueryDto {
     description: 'update date of category',
   })
   @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @Type(() => Date)
   updated_At?: Date;
 
   @ApiPropertyOptional({
     required: false,
     description: 'Name or slug of the category',
-  examples: ['Pizza','store-1-burger']
+    examples: ['Pizza', 'store-1-burger'],
   })
   @IsOptional()
   @IsString()

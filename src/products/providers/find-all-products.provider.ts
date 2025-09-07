@@ -41,8 +41,7 @@ export class FindAllProductsProvider {
                 where.OR = [
                     {name: {contains:search, mode: 'insensitive'}},
                     {description: {contains:search, mode: 'insensitive'}},
-                    { slug: { contains: search, mode: 'insensitive' } },
-                    { preparation_time: { contains: search, mode: 'insensitive' } }
+                    { slug: { contains: search, mode: 'insensitive' } }
                     
                 ]
             }

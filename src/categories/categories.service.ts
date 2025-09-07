@@ -91,14 +91,20 @@ export class CategoriesService {
 
     /**
      * though slug is combine of store_id and name,
-     * if user wants to update category name
+     * if user wants to update category name/store_id
      * then we have re-generate slug again
      *  */
+    const category = await this.prisma.category.findUnique({ where: { id } });
     if (updateCategoryDto.name) {
-      const category = await this.prisma.category.findUnique({ where: { id } });
       updateCategoryDto['slug'] = this.generateSlug.generateSlug(
         category!.store_id,
         updateCategoryDto.name,
+      );
+    }
+    if (updateCategoryDto.store_id) {
+      updateCategoryDto['slug'] = this.generateSlug.generateSlug(
+        updateCategoryDto.store_id,
+        category!.name,
       );
     }
 
@@ -112,6 +118,7 @@ export class CategoriesService {
   public async deleteCategory(id: string) {
     // checking if category exists before initialize the delete operation
     await this.findById(id);
-    return this.prisma.category.delete({ where: { id } });
+    await this.prisma.category.delete({ where: { id } });
+    return `Category deleted successfully`
   }
 }

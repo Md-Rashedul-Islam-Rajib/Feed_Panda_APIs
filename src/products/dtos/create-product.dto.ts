@@ -69,13 +69,6 @@ export class CreateProductDto {
   @IsOptional()
   status?: ProductStatus = ProductStatus.PUBLISHED;
 
-  @ApiPropertyOptional({
-    description: 'Slug (will be auto-generated if absent)',
-    example: 'store_111-burger',
-  })
-  @IsString()
-  @IsNotEmpty()
-  slug?: string;
 
   @ApiPropertyOptional({
     description: 'MetaData as JSON object',
@@ -90,5 +83,5 @@ export class CreateProductDto {
   })
   @IsUUID('all',{each:true})
   @IsOptional()
-  categoryIds?: string[];
+  categoryIds: string[];
 }

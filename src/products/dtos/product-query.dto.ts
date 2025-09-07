@@ -2,7 +2,7 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { ProductStatus } from '@prisma/client';
 import { Type } from 'class-transformer';
-import { IsDateString, IsIn, IsInt, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
+import { IsDate, IsEnum, IsIn, IsInt, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class ProductQueryDto {
 
@@ -70,15 +70,16 @@ export class ProductQueryDto {
     example: ProductStatus.PUBLISHED,
   })
   @IsOptional()
-  @IsString()
-  status?: string;
+  @IsEnum(ProductStatus)
+  status?: ProductStatus =ProductStatus.PUBLISHED;
 
   @ApiPropertyOptional({
     required: false,
     description: 'creation date of product',
   })
   @IsOptional()
-  @IsDateString()
+    @Type(()=>Date)
+  @IsDate()
   created_At?: Date;
 
   @ApiPropertyOptional({
@@ -86,7 +87,8 @@ export class ProductQueryDto {
     description: 'update date of product',
   })
   @IsOptional()
-  @IsDateString()
+  @Type(()=>Date)
+  @IsDate()
   updated_At?: Date;
 
   @ApiPropertyOptional({
