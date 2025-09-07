@@ -11,8 +11,8 @@ A Nest.js-based backend system for food delivery applications featuring category
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
 
 ## 📦 Download Project
-[![Download ZIP](https://img.shields.io/badge/Download-ZIP-0a7fc1?style=for-the-badge&logo=github)](#)
-[![Clone Repository](https://img.shields.io/badge/Clone-Repository-0a7fc1?style=for-the-badge&logo=git)](#)
+[![Download ZIP](https://img.shields.io/badge/Download-ZIP-0a7fc1?style=for-the-badge&logo=github)](https://github.com/Md-Rashedul-Islam-Rajib/Feed_Panda_APIs/archive/refs/heads/main.zip)
+[![Clone Repository](https://img.shields.io/badge/Clone-Repository-0a7fc1?style=for-the-badge&logo=git)](https://github.com/Md-Rashedul-Islam-Rajib/Feed_Panda_APIs.git)
 
 ## ✨ Features
 - **Category Management**: Create, read, update, and delete restaurant categories
